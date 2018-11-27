@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-class Layout extends React.Component{
+class HeadTitle extends React.Component{
     constructor(props){
         super(props);
     }

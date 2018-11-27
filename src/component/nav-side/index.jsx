@@ -29,10 +29,10 @@ class NavSide extends React.Component{
                             </a>
                             <ul className="nav nav-second-level collapse in">
                                 <li>
-                                    <a className="active-menu">商品管理</a>
+                                    <a className="">商品管理</a>
                                 </li>
                                 <li>
-                                    <a className="active-menu">品类管理</a>
+                                    <a className="">品类管理</a>
                                 </li>
                             </ul>
                         </li>
