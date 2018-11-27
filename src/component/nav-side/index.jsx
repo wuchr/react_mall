@@ -1,11 +1,6 @@
-/*
-* @Author: Rosen
-* @Date:   2018-01-23 20:00:02
-* @Last Modified by:   Rosen
-* @Last Modified time: 2018-01-26 13:43:14
-*/
-import React from 'react';
 
+import React from 'react';
+import {Link, NavLink} from 'react-router-dom';
 class NavSide extends React.Component{
     constructor(props){
         super(props);
@@ -16,23 +11,23 @@ class NavSide extends React.Component{
                 <div className="sidebar-collapse">
                     <ul className="nav">
                         <li>
-                            <a className="active-menu">
+                            <NavLink exact activeClassName="active-menu" to="/">
                                 <i className="fa fa-dashboard"></i>
                                 <span>首页</span>
-                            </a>
+                            </NavLink>
                         </li>
                         <li className="active">
-                            <a>
+                            <Link to="/product">
                                 <i className="fa fa-list"></i>
                                 <span>商品</span>
                                 <span className="fa arrow"></span>
-                            </a>
+                            </Link>
                             <ul className="nav nav-second-level collapse in">
                                 <li>
-                                    <a className="">商品管理</a>
+                                    <NavLink activeClassName="active-menu" to="/product">商品管理</NavLink>
                                 </li>
                                 <li>
-                                    <a className="">品类管理</a>
+                                    <NavLink activeClassName="active-menu" to="/product-category">品类管理</NavLink>
                                 </li>
                             </ul>
                         </li>

@@ -6,14 +6,15 @@ import {  BrowserRouter as Router, Route, Switch,Redirect} from 'react-router-do
 class App extends React.Component{
     render() {
         return (
-            <Layout>
-                <Router>
+            <Router>
+                <Layout>
                     <Switch>
                         <Route exact path="/" component={Home}/>
-                        <Redirect from ="*" to="/"/>
+                        <Route  path="/product" component={Home}/>
+                        <Route  path="/product-category" component={Home}/>
                     </Switch>
-                </Router>
-            </Layout>
+                </Layout>
+            </Router>
         );
     }
 }
