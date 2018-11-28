@@ -19,6 +19,8 @@ module.exports = {
       alias:{
           page: path.resolve(__dirname,'src/page'),
           component:path.resolve(__dirname,'src/component'),
+          util: path.resolve(__dirname,'src/commonutil'),
+          server: path.resolve(__dirname,'src/service')
       }
     },
     module: {
@@ -83,8 +85,7 @@ module.exports = {
     ],
     devServer: {
         port: 8083,
-        historyApiFallback:{
-            index: '/dist/index.html'
-        }
+        historyApiFallback: true
+
     }
 };
