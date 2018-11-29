@@ -23,7 +23,7 @@ class Login extends React.Component{
             password: this.state.password
         };
 
-        var loginPromise = userService.userLogin(loginInfo);
+        let loginPromise = userService.userLogin(loginInfo);
         loginPromise.then((res) => {
                window.localStorage.setItem("userInfo",JSON.stringify(res));
                 this.props.history.push('/');
