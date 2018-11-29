@@ -20,7 +20,7 @@ module.exports = {
           page: path.resolve(__dirname,'src/page'),
           component:path.resolve(__dirname,'src/component'),
           util: path.resolve(__dirname,'src/commonutil'),
-          server: path.resolve(__dirname,'src/service')
+          service: path.resolve(__dirname,'src/service')
       }
     },
     module: {
@@ -85,7 +85,14 @@ module.exports = {
     ],
     devServer: {
         port: 8083,
-        historyApiFallback: true
+        historyApiFallback: true,
+        proxy : {
+            '/api' : {
+                target: 'http://result.eolinker.com/igfA5Ql6b2b07fca975e0a9b9bb396bfb63f19e7b54a12a?uri=/api/',
+                changeOrigin : true,
+                pathRewrite: {'^/api' : ''}
+            }
+        }
 
     }
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.scss';
-import userServer from 'server/user-service.jsx';
+import userServer from 'service/user-service.jsx';
 let userService = new userServer();
 class Login extends React.Component{
     constructor(props){
@@ -18,9 +18,18 @@ class Login extends React.Component{
         });
     }
     onSubmit(){
-        userService.userLogin({
+        let loginInfo = {
             username: this.state.username,
             password: this.state.password
+        };
+
+        var loginPromise = userService.userLogin(loginInfo);
+        loginPromise.then((res) => {
+               window.localStorage.setItem("userInfo",JSON.stringify(res));
+                this.props.history.push('/');
+            },
+            (errorMsg) => {
+                console.log(errorMsg);
         })
     }
     render(){

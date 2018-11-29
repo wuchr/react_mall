@@ -33,18 +33,25 @@ class Util{
                 data: param.data || null,
                 success: res => {
                     if(res.status == 0){
-                        console.log("chenggong");
                         resolve(res.data, res.msg);
                     }else if(res.status == "10"){
-                        console.log("没有登录");
+                        console.log("没有登录 去做登录操作");
+
                     }
                 },
                 error: error =>{
                     console.log("err");
+                    reject(error.statusTexts);
                 }
             })
         })
 
     }
+    /*
+
+
+     */
 
 }
+
+export default Util;

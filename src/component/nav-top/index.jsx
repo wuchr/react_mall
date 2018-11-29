@@ -1,12 +1,24 @@
 
 import React from 'react';
+import userServer from 'service/user-service.jsx';
 
 class NavTop extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            username: "wuchr"
+            username: JSON.parse(window.localStorage.getItem("userInfo")).username
         }
+
+    }
+    onLogout(){
+        //清除userInfo 信息
+        userServer.logout().then((res) => {
+           localStorage.removeItem('userInfo');
+            window.location.href = "/login"
+        }, (errorMsg) => {
+            alert("失败");
+         })
+
     }
     render(){
         return (
@@ -28,7 +40,7 @@ class NavTop extends React.Component{
                         </a>
                         <ul className="dropdown-menu dropdown-user">
                             <li>
-                                <a>
+                                <a onClick={(e) => this.onLogout(e)}>
                                     <i className="fa fa-sign-out fa-fw"></i>
                                     <span>退出登录</span>
                                 </a>
