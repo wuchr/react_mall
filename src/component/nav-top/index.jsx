@@ -1,7 +1,7 @@
 
 import React from 'react';
 import userServer from 'service/user-service.jsx';
-
+let userService = new userServer();
 class NavTop extends React.Component{
     constructor(props){
         super(props);
@@ -10,10 +10,10 @@ class NavTop extends React.Component{
         }
 
     }
-    onLogout(){
+    onLogout(e){
         //清除userInfo 信息
-        userServer.logout().then((res) => {
-           localStorage.removeItem('userInfo');
+        userService.logout().then((res) => {
+           localStorage.removeItem("userInfo");
             window.location.href = "/login"
         }, (errorMsg) => {
             alert("失败");
