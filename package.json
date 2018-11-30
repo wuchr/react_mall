@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/wuchr/react_mall/issues"
   },
-  "homepage": "./",
+  "homepage": "https://github.com/wuchr/react_mall#readme",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "7.0.0",
