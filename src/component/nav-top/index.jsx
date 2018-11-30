@@ -6,7 +6,7 @@ class NavTop extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            username: JSON.parse(window.localStorage.getItem("userInfo")).username
+            username: JSON.parse(window.localStorage.getItem("userInfo")).username || ''
         }
 
     }
@@ -16,7 +16,8 @@ class NavTop extends React.Component{
            localStorage.removeItem("userInfo");
             window.location.href = "/login"
         }, (errorMsg) => {
-            alert("失败");
+            localStorage.removeItem("userInfo");
+            window.location.href = "/login"
          })
 
     }

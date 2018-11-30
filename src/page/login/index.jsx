@@ -25,7 +25,7 @@ class Login extends React.Component{
 
         let loginPromise = userService.userLogin(loginInfo);
         loginPromise.then((res) => {
-               window.localStorage.setItem("userInfo",JSON.stringify(res));
+               window.localStorage.setItem("userInfo",JSON.stringify(res.data));
                 this.props.history.push('/');
             },
             (errorMsg) => {

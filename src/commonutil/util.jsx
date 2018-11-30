@@ -30,11 +30,11 @@ class Util{
                 url:   param.url || "",
                 type:  param.type || "get",
                 dataType: param.dataType || "json",
-                data: param.data || null,
+                data: param.data || {},
                 success: res => {
-                    console
+                    console.log(res);
                     if(res.status == 0){
-                        resolve(res.data, res.msg);
+                        resolve(res);
                     }else if(res.status == "10"){
                         console.log("没有登录 去做登录操作");
 
