@@ -16,8 +16,7 @@ class NavTop extends React.Component{
            localStorage.removeItem("userInfo");
             window.location.href = "/login"
         }, (errorMsg) => {
-            localStorage.removeItem("userInfo");
-            window.location.href = "/login"
+           console.log(errorMsg)
          })
 
     }

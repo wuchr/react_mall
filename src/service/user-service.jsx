@@ -18,6 +18,12 @@ class User{
             url: "/api/userLogout.do",
         });
     }
+    loadUserList(){
+        return util.doRequest({
+            type:'GET',
+            url: "/api/getUserList.do",
+        });
+    }
 }
 
 export default User;

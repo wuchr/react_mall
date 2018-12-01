@@ -7,10 +7,10 @@ class HeadTitle extends React.Component{
     }
     render(){
         return (
-          <div className="row">
+          <div className="row" style={{marginBottom: '20px'}}>
               <div className="col-md-12">
                   <h1>
-                      首页
+                      {this.props.title}
                   </h1>
               </div>
               {this.props.children}
