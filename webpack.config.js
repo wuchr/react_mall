@@ -88,7 +88,7 @@ module.exports = {
         historyApiFallback: true,
         proxy : {
             '/api' : {
-                target: 'http://result.cc.com/igfA5Ql6b2b07fca975e0a9b9bb396bfb63f19e7b54a12a?uri=/api/',
+                target: 'http://result.eolinker.com/igfA5Ql6b2b07fca975e0a9b9bb396bfb63f19e7b54a12a?uri=/api/',
                 changeOrigin : true,
                 pathRewrite: {'^/api' : ''}
             }
