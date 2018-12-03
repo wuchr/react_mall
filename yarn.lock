@@ -4364,8 +4364,8 @@ raw-body@2.3.3:
 
 rc-pagination@^1.17.3:
   version "1.17.3"
-  resolved "https://registry.yarnpkg.com/rc-pagination/-/rc-pagination-1.17.3.tgz#4c5334adef607f7a80b90ca7501a1e962491aae5"
-  integrity sha512-/bwe4++vjBHq2lNvxWP2LpCx0c0CRNH+tDO75tFsj1XMpQQo/vzdhreISC3HFjQOeb5a+59e2dXKmoBCootr9Q==
+  resolved "http://registry.npm.taobao.org/rc-pagination/download/rc-pagination-1.17.3.tgz#4c5334adef607f7a80b90ca7501a1e962491aae5"
+  integrity sha1-TFM0re9gf3qAuQynUBoeliSRquU=
   dependencies:
     babel-runtime "6.x"
     prop-types "^15.5.7"

@@ -9,26 +9,52 @@ class UserList  extends React.Component {
         super(props);
         this.state = {
             list:[],
-            pageNum:1
+            pageNum:1,
+            isfirstLoad:true
         }
     }
     getUserList() {
         User.loadUserList().then((res) => {
             console.log(res.data);
-            this.setState(res.data);
+            this.setState(res.data,() =>{
+                isfirstLoad: false
+            });
         },(err)  => {
             alert(err);
         });
     }
     onPageNumChange(pageNum){
-        this.state.pageNum = pageNum;
-        this.getUserList();
+        this.setState({ //异步执行的
+            pageNum:pageNum
+        },() => {
+            this.getUserList();
+        });
+
     }
     componentDidMount() {
         this.getUserList();
     }
 
     render() {
+        let listBody =  this.state.list.map((user,index) => {
+            return (
+                <tr key={index}>
+                    <td>{user.ID}</td>
+                    <td>{user.userName}</td>
+                    <td>{user.email}</td>
+                    <td>{user.telphone}</td>
+                    <td>{user.regDate}</td>
+                </tr>
+            )
+        });
+        let errorBody = (
+            <tr>
+                <td colSpan="5" className="text-center">
+                    {this.state.isfirstLoad ? "正在加载数据..." : "无数据"}
+                </td>
+            </tr>
+        );
+        let bodyList = this.state.list.length > 0 ? listBody : errorBody;
         return (
             <div id="page-wrapper">
                 <HeadTitle title="用户列表" />
@@ -45,19 +71,7 @@ class UserList  extends React.Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {
-                                    this.state.list.map((user,index) => {
-                                           return (
-                                               <tr key={index}>
-                                                   <td>{user.ID}</td>
-                                                   <td>{user.userName}</td>
-                                                   <td>{user.email}</td>
-                                                   <td>{user.telphone}</td>
-                                                   <td>{user.regDate}</td>
-                                               </tr>
-                                           )
-                                    })
-                                }
+                                 { bodyList }
                             </tbody>
                         </table>
                         <Pagination current={this.state.pageNum} total={this.state.totalCount} onChange={(pageNum) => {this.onPageNumChange(pageNum)}}/>
