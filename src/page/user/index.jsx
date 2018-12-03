@@ -1,6 +1,7 @@
 import React from 'react';
 import HeadTitle from 'component/head-title/index.jsx';
 import userService from 'service/user-service.jsx';
+import TableList from 'component/table-list/index.jsx';
 import Pagination from 'rc-pagination';
 import 'rc-pagination/dist/rc-pagination.min.css';
 const User = new userService();
@@ -47,6 +48,7 @@ class UserList  extends React.Component {
                 </tr>
             )
         });
+<<<<<<< HEAD
         let errorBody = (
             <tr>
                 <td colSpan="5" className="text-center">
@@ -55,11 +57,14 @@ class UserList  extends React.Component {
             </tr>
         );
         let bodyList = this.state.list.length > 0 ? listBody : errorBody;
+=======
+>>>>>>> product
         return (
             <div id="page-wrapper">
                 <HeadTitle title="用户列表" />
                 <div className="row">
                     <div className="clo-md-12">
+<<<<<<< HEAD
                         <table className="table table-bordered table-striped">
                             <thead>
                                 <tr>
@@ -74,6 +79,11 @@ class UserList  extends React.Component {
                                  { bodyList }
                             </tbody>
                         </table>
+=======
+                        <TableList headList={['ID','用户名','电话','邮箱','注册时间']}>
+                            { listBody }
+                        </TableList>
+>>>>>>> product
                         <Pagination current={this.state.pageNum} total={this.state.totalCount} onChange={(pageNum) => {this.onPageNumChange(pageNum)}}/>
                     </div>
                 </div>
