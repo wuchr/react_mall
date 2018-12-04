@@ -12,7 +12,7 @@ import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-ro
 import Layout           from 'component/layout/index.jsx';
 // 页面
 import Home             from 'page/home/index.jsx';
-import ProductRouter    from 'page/product/router.jsx';
+import ProductRouter    from 'page/productmanger/router.jsx';
 import Login            from 'page/login/index.jsx';
 import OrderList        from 'page/order/index.jsx';
 import OrderDetail      from 'page/order/detail.jsx';

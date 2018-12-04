@@ -1,11 +1,12 @@
 import React from 'react';
 import HeadTitle from 'component/head-title/index.jsx';
-import userService from 'service/user-service.jsx';
+import ProductService from 'service/product-service.jsx';
 import TableList from 'component/table-list/index.jsx';
 import Pagination from 'rc-pagination';
 import 'rc-pagination/dist/rc-pagination.min.css';
-const User = new userService();
-class UserList  extends React.Component {
+import {Link} from 'react-router-dom';
+let product = new ProductService();
+class Product extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -13,8 +14,8 @@ class UserList  extends React.Component {
             pageNum:1
         }
     }
-    getUserList() {
-        User.loadUserList().then((res) => {
+    getProductList() {
+        product.loadProductList().then((res) => {
             console.log(res.data);
             this.setState(res.data);
         },(err)  => {
@@ -25,14 +26,13 @@ class UserList  extends React.Component {
         this.setState({ //异步执行的
             pageNum:pageNum
         },() => {
-            this.getUserList();
+            this.getProductList();
         });
 
     }
     componentDidMount() {
-        this.getUserList();
+        this.getProductList();
     }
-
     render() {
         let listBody =  this.state.list.map((user,index) => {
             return (
@@ -47,7 +47,7 @@ class UserList  extends React.Component {
         });
         return (
             <div id="page-wrapper">
-                <HeadTitle title="用户列表" />
+                <HeadTitle title="商品列表" />
                 <div className="row">
                     <div className="clo-md-12">
                         <TableList headList={['ID','用户名','电话','邮箱','注册时间']}>
@@ -57,9 +57,8 @@ class UserList  extends React.Component {
                     </div>
                 </div>
             </div>
-
-        )
+        );
     }
 }
-export default UserList;
 
+export default Product;
