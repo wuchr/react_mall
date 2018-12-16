@@ -7,8 +7,8 @@ var util = new Util();
 class User{
      userLogin(loginInfo){
       return util.doRequest({
-            type:'GET',
-            url: "/api/userLogin.do",
+            type:'POST',
+            url: "/manager/user/login.do",
             data: loginInfo
         });
     }

@@ -11,11 +11,15 @@ class Product extends React.Component{
         super(props);
         this.state = {
             list:[],
-            pageNum:1
+            pageNum:1,
+            listType:"list"
         }
     }
     getProductList() {
-        product.loadProductList().then((res) => {
+        let requestInfo = {
+            pageNum: this.state.pageNum
+        }
+        product.loadProductList(requestInfo).then((res) => {
             console.log(res.data);
             this.setState(res.data);
         },(err)  => {

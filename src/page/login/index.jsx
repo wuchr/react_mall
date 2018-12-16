@@ -30,6 +30,7 @@ class Login extends React.Component{
             },
             (errorMsg) => {
                 console.log(errorMsg);
+                alert(res.msg);
         })
     }
     render(){

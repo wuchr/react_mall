@@ -34,10 +34,13 @@ class Util{
                 success: res => {
                     console.log(res);
                     if(res.status == 0){
+                        console.log(res);
                         resolve(res);
                     }else if(res.status == "10"){
                         console.log("没有登录 去做登录操作");
 
+                    }else if(res.status == "1"){
+                        reject(res);
                     }
                 },
                 error: error =>{
