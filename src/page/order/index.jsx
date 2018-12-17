@@ -1,14 +1,18 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import HeadTitle from 'component/head-title/index.jsx';
 import TableList from 'component/table-list/index.jsx';
 import OrderService from 'service/order-service.jsx';
+import Pagination from 'rc-pagination';
+import 'rc-pagination/dist/rc-pagination.min.css';
 let orderS = new OrderService();
 class Order extends React.Component{
     constructor(props){
         super(props)
         this.state = {
             pageNum:1,
-            list: []
+            list: [],
+            total:0
         }
     }
     getAllOrderList(){
@@ -17,7 +21,7 @@ class Order extends React.Component{
             pageSize: 10
         };
         orderS.loadOrderList(requestInfo).then(res => {
-            this.setState(res);
+            this.setState(res.data);
         },err =>{
             alert(err.msg);
         })
@@ -25,16 +29,26 @@ class Order extends React.Component{
     componentDidMount(){
         this.getAllOrderList()
     }
+    onPageNumChange(pageNum){
+        this.setState({
+            pageNum: pageNum
+        },() => {
+            this.getAllOrderList()
+        })
+
+    }
     render(){
         let bodyList = this.state.list.map((item, index) => {
             return(
                 <tr key={index}>
-                    <td>item.orderNo</td>
-                    <td>item.orderNo</td>
-                    <td>item.statusDesc</td>
-                    <td>item.payment</td>
-                    <td>item.createTime</td>
-                    <td>item.orderNo</td>
+                    <td>{item.orderNo}</td>
+                    <td>{item.receiverName}</td>
+                    <td>{item.statusDesc}</td>
+                    <td>{item.payment}</td>
+                    <td>{item.createTime}</td>
+                    <td>
+                        <Link to={ `/order/detail/${item.orderNo}` }>详情</Link>
+                    </td>
                 </tr>
             )
         });
@@ -47,6 +61,12 @@ class Order extends React.Component{
                             {bodyList}
                         </TableList>
                     </div>
+                    <Pagination
+                        current={this.state.pageNum} total={this.state.total}
+                        onChange={(pageNum) => {this.onPageNumChange(pageNum)}}
+                        showQuickJumper = {true}
+                    />
+
                 </div>
             </div>
         )
