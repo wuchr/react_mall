@@ -17,10 +17,12 @@ class TableList  extends React.Component {
     render() {
         //表头信息
         let headList = this.props.headList.map((headItem,index) =>{
-                return (
-                    <th key={index}>{headItem}</th>
-                )
-            })
+                if(typeof headItem === "string"){
+                   return <th key={index}>{headItem}</th>;
+                }else if(typeof headItem === "object"){
+                    return <th key={index} width={headItem.width}>{headItem.name}</th>;
+                }
+        })
 
             //表格数据
         let bodyInfo = this.props.children;

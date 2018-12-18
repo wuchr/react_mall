@@ -8,5 +8,27 @@ class OrderService{
             data:requestInfo
         })
     }
+    /*
+     获取订单详情
+     */
+    getDetailByOrderNo(orderNo){
+        return util.doRequest({
+            url:"/manager/order/detail.do",
+            type:"post",
+            data: orderNo
+        })
+    }
+    /*
+    订单发货
+     */
+    sendGoods(orderNo){
+        return util.doRequest({
+            url:"/manager/order/send_goods.do",
+            type:"post",
+            data: orderNo
+        })
+    }
+
+
 }
 export default OrderService;

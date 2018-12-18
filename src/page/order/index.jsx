@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import HeadTitle from 'component/head-title/index.jsx';
 import TableList from 'component/table-list/index.jsx';
 import OrderService from 'service/order-service.jsx';
@@ -47,7 +47,7 @@ class Order extends React.Component{
                     <td>{item.payment}</td>
                     <td>{item.createTime}</td>
                     <td>
-                        <Link to={ `/order/detail/${item.orderNo}` }>详情</Link>
+                        <NavLink to={ `/order/detail/${item.orderNo}` } activeClassName="active-menu">查看</NavLink>
                     </td>
                 </tr>
             )
