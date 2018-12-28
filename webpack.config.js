@@ -37,10 +37,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: "css-loader"
-                })
+               use: ['style-loader', 'css-loader'],
             },
             {
                 test: /\.scss$/,
@@ -66,7 +63,7 @@ module.exports = {
                 test: /\.(eot|svg|ttf|woff|woff2|otf)$/,
                 use: [
                     {
-                        loader: 'url-loader',
+                        loader: 'file-loader',
                         options: {
                             limit: 8192,
                             name: 'resource/[name].[ext]'
@@ -96,6 +93,12 @@ module.exports = {
                 target: 'http://admintest.happymmall.com',
                 changeOrigin : true,
                 pathRewrite: {'^/manager' : ''}
+            },
+            '/nodeServer':{
+                target: 'http://localhost:3000/',
+                changeOrigin : true,
+                pathRewrite: {'^/nodeServer': ''}
+
             }
 
         }

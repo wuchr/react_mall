@@ -5,20 +5,21 @@ import TableList from 'component/table-list/index.jsx';
 import Pagination from 'rc-pagination';
 import 'rc-pagination/dist/rc-pagination.min.css';
 import {Link} from 'react-router-dom';
+import {Button } from 'element-react';
+import 'element-theme-default';
+import './product.scss';
 let product = new ProductService();
 class Product extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            list:[],
-            pageNum:1,
-            listType:"list"
+            list: []
         }
-    }
-    getProductList() {
+     }
+    getProductList(){
         let requestInfo = {
             pageNum: this.state.pageNum
-        }
+        };
         product.loadProductList(requestInfo).then((res) => {
             console.log(res.data);
             this.setState(res.data);
@@ -51,18 +52,29 @@ class Product extends React.Component{
         });
         return (
             <div id="page-wrapper">
-                <HeadTitle title="商品列表" />
+                <HeadTitle title="商品列表" >
+                    <div className="page-header-right">
+                        <i className="el-icon-plus">
+
+                        </i>
+                        <Link to="/product/add" className="add-product-link">添加商品</Link>
+                    </div>
+                </HeadTitle>
+
                 <div className="row">
                     <div className="clo-md-12">
                         <TableList headList={['ID','用户名','电话','邮箱','注册时间']}>
                             { listBody }
                         </TableList>
-                        <Pagination current={this.state.pageNum} total={this.state.totalCount} onChange={(pageNum) => {this.onPageNumChange(pageNum)}}/>
+                        <Pagination
+                            current={this.state.pageNum}
+                            total={this.state.totalCount}
+                            onChange={(pageNum) => {this.onPageNumChange(pageNum)}}
+                        />
                     </div>
                 </div>
             </div>
         );
     }
 }
-
 export default Product;

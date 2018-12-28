@@ -7,7 +7,7 @@ import ErrorPage from 'page/error/index.jsx';
 import UserList from 'page/user/index.jsx';
 import ProductRouteList from 'page/productmanger/router.jsx'
 import Order from 'page/order/index.jsx'
-import OrderDetail from 'page/order/detail.jsx'
+import OrderDetail from 'page/order/detail.jsx';
 import {  BrowserRouter as Router, Route, Switch,Redirect} from 'react-router-dom';
 class App extends React.Component{
     render() {
@@ -25,6 +25,7 @@ class App extends React.Component{
                                 <Route  path="/product" component={ProductRouteList}/>
                                 <Route  path="/product-category" component={ProductRouteList}/>
                                 <Route  path="/user/index" component={UserList}/>
+                                <Redirect exact from="/product" to="/product/index"/>
                                 <Redirect exact from="/user" to="/user/index" />
                                 <Route  component={ErrorPage}/>
                             </Switch>

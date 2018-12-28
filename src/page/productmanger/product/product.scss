@@ -1,0 +1,30 @@
+.page-header-right{
+  background: #20A0FF;
+  display: inline-block;
+  color:#ffffff;
+  padding: 5px;
+  border-radius: 4px;
+  margin-right: 10px;
+  margin-top: 10px;
+  a{
+    color:#ffffff;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+
+}
+
+div.el-row{
+  margin-bottom: 20px;
+}
+.add-container{
+  padding-left: 92px;
+  margin-top: 40px;
+}
+.el-select{
+  width:48%;
+}
+.first-select{
+  margin-right:4%;
+}

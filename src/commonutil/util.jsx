@@ -52,9 +52,17 @@ class Util{
 
     }
     /*
-
-
+        时间格式化
      */
+    dateFormate(date){
+        var yyyy = date.getFullYear();
+        var mm = date.getMonth()+1;
+        var dd = date.getDate();
+        var h = date.getHours();
+        var m = date.getMinutes();
+        var s = date.getSeconds();
+        return yyyy + "-" + mm + "-" + dd + " " + h+":"+m+":"+s;
+    }
 
 }
 

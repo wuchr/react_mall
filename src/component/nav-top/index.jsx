@@ -1,6 +1,8 @@
 
 import React from 'react';
 import userServer from 'service/user-service.jsx';
+import Timer from 'component/timer/index.jsx';
+import './index.scss';
 let userService = new userServer();
 class NavTop extends React.Component{
     constructor(props){
@@ -28,6 +30,9 @@ class NavTop extends React.Component{
                 </div>
 
                 <ul className="nav navbar-top-links navbar-right">
+                    <li>
+                        <Timer/>
+                    </li>
                     <li className="dropdown">
                         <a className="dropdown-toggle" href="javascript:;">
                             <i className="fa fa-user fa-fw"></i>
