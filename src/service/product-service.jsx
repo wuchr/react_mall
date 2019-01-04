@@ -5,10 +5,11 @@
 import Util from 'util/util.jsx';
 var util = new Util();
 class Product{
-    loadProductList(){
+    loadProductList(pageNum){
         return util.doRequest({
             type:'GET',
-            url: "/api/getUserList.do",
+            url: "/nodeServer/product/productList",
+            data:pageNum
         });
     }
 

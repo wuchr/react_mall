@@ -1,6 +1,6 @@
 import React from 'react';
 import HeadTitle from 'component/head-title/index.jsx';
-import {Input,Button,Layout,Message} from 'element-react';
+import {Input,Button,Layout,Message,Upload,Dialog} from 'element-react';
 import CategorySelect from 'page/productmanger/product/catrgory-select.jsx';
 import 'element-theme-default';
 import ProductService from "service/product-service.jsx";
@@ -15,8 +15,9 @@ class ProductAdd extends React.Component {
             productPrice: "",
             productCount:"",
             secondSelectedValue: '0',
-            firstSelectedValue: '0'
-
+            firstSelectedValue: '0',
+            dialogImageUrl: '',
+            dialogVisible: false,
         }
     }
     onCategoryChange(secondValue, firstValue){
@@ -32,6 +33,13 @@ class ProductAdd extends React.Component {
            [productkey]: value
        })
     }
+    handleRemove(file, fileList) {
+        console.log(file, fileList);
+    }
+
+    handlePreview(file) {
+        console.log(file);
+    }
     saveProduct(){
         let saveData = {
             productName: this.state.productName,
@@ -41,6 +49,7 @@ class ProductAdd extends React.Component {
             categoryFirst: this.state.firstSelectedValue,
             categorySecond: this.state.secondSelectedValue
         }
+
         _product.saveProduct(saveData).then((res) =>{
             Message({
                 showClose: true,
@@ -51,12 +60,17 @@ class ProductAdd extends React.Component {
             Message({
                 showClose: true,
                 message: '保存失败!!!',
-                type: 'error'
+                type: 'error',
+                duration: 0
             });
         })
 
     }
+
     render() {
+        const fileList2 = [
+            {name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg'}, {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg'}
+        ]
         return(
             <div id="page-wrapper">
                 <HeadTitle title="添加商品"/>
@@ -124,9 +138,27 @@ class ProductAdd extends React.Component {
                         </Layout.Col>
                     </Layout.Row>
                     <Layout.Row>
-                        <Layout.Col span="4">
-                            <Button type="primary" onClick={(e) => {this.saveProduct(e)}}>保存</Button>
+                        <Layout.Col span="12">
+                           <Layout.Col span="4">
+                                <label htmlFor="" >商品图片</label>
+                            </Layout.Col>
+                            <Layout.Col span="20">
+                                <Upload
+                                    className="upload-demo"
+                                    action="/nodeServer/multerUpload/upload"
+                                    onPreview={file => this.handlePreview(file)}
+                                    onRemove={(file, fileList) => this.handleRemove(file, fileList)}
+                                    fileList={fileList2}
+                                    listType="picture"
+                                    tip={<div className="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>}
+                                >
+                                    <Button size="small" type="primary">点击上传</Button>
+                                </Upload>
+                            </Layout.Col>
                         </Layout.Col>
+                    </Layout.Row>
+                    <Layout.Row>
+                        <Layout.Col span="4"> <Button className="save-btn" type="primary" onClick={(e) => {this.saveProduct(e)}}>保存</Button></Layout.Col>
                     </Layout.Row>
 
                 </div>

@@ -2,10 +2,9 @@ import React from 'react';
 import HeadTitle from 'component/head-title/index.jsx';
 import ProductService from 'service/product-service.jsx';
 import TableList from 'component/table-list/index.jsx';
-import Pagination from 'rc-pagination';
 import 'rc-pagination/dist/rc-pagination.min.css';
 import {Link} from 'react-router-dom';
-import {Button } from 'element-react';
+import {Pagination} from 'element-react';
 import 'element-theme-default';
 import './product.scss';
 let product = new ProductService();
@@ -13,27 +12,40 @@ class Product extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            list: []
+            list: [],
+            pageNum: 1,
+            pageSize: 10,
+            total: 0
         }
      }
     getProductList(){
         let requestInfo = {
-            pageNum: this.state.pageNum
+            pageNum: this.state.pageNum,
+            pageSize: this.state.pageSize
         };
         product.loadProductList(requestInfo).then((res) => {
-            console.log(res.data);
-            this.setState(res.data);
+            this.setState({
+                list: res.data,
+                total: res.total
+            });
         },(err)  => {
             alert(err);
         });
     }
-    onPageNumChange(pageNum){
-        this.setState({ //异步执行的
-            pageNum:pageNum
-        },() => {
-            this.getProductList();
-        });
 
+    onCurrentChange(currentPage){
+       this.setState({
+           pageNum: currentPage
+       }, () => {
+           this.getProductList();
+       })
+    }
+    onSizeChange(size){
+        this.setState({
+            pageSize: size
+        }, () => {
+            this.getProductList();
+        })
     }
     componentDidMount() {
         this.getProductList();
@@ -42,11 +54,11 @@ class Product extends React.Component{
         let listBody =  this.state.list.map((user,index) => {
             return (
                 <tr key={index}>
-                    <td>{user.ID}</td>
-                    <td>{user.userName}</td>
-                    <td>{user.email}</td>
-                    <td>{user.telphone}</td>
-                    <td>{user.regDate}</td>
+                    <td>{user.id}</td>
+                    <td>{user.productName}</td>
+                    <td>{user.productDescr}</td>
+                    <td>{user.categoryFirst}</td>
+                    <td>{user.categorySecond}</td>
                 </tr>
             )
         });
@@ -63,13 +75,17 @@ class Product extends React.Component{
 
                 <div className="row">
                     <div className="clo-md-12">
-                        <TableList headList={['ID','用户名','电话','邮箱','注册时间']}>
+                        <TableList headList={['ID','商品名称','商品描述','一级分类','二级分类']}>
                             { listBody }
                         </TableList>
                         <Pagination
-                            current={this.state.pageNum}
-                            total={this.state.totalCount}
-                            onChange={(pageNum) => {this.onPageNumChange(pageNum)}}
+                            layout="total, sizes, prev, pager, next, jumper"
+                            total={this.state.total}
+                            pageSizes={[10, 20, 50]}
+                            pageSize={this.state.pageSize}
+                            currentPage={this.state.pageNum}
+                            onSizeChange = {size => this.onSizeChange(size)}
+                            onCurrentChange =  {currentPage => this.onCurrentChange(currentPage)}
                         />
                     </div>
                 </div>
